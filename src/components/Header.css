@@ -1,0 +1,13 @@
+.header {
+    background-color: var(--primary);
+    color: var(--white);
+    width: 100%;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.heading {
+    font-family: 'Montserrat', sans-serif;
+}
