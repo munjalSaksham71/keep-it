@@ -4,17 +4,17 @@ import AddNote from './components/AddNote/AddNote';
 import Header from './components/Header/Header';
 import ViewNote from './components/ViewNote/ViewNote';
 
-function App() {
+const App = () => {
   
   const [notes, setNotes] = useState([]);
 
-  function addNote(newNote) {
+  const addNote = (newNote) => {
     setNotes(prevNotes => {
       return [...prevNotes, newNote];
     });
   }
 
-  function deleteNote(id) {
+  const deleteNote = (id) => {
     setNotes(prevNotes => {
       return prevNotes.filter((noteItem, index) => {
         return index !== id;
@@ -22,7 +22,6 @@ function App() {
     });
   }
 
-  console.log(notes);
   return (
     <div className="App">
       <Header />
