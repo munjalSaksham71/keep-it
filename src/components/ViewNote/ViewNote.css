@@ -1,0 +1,19 @@
+.cards{
+    display: flex;
+    flex-flow: row wrap;
+    padding: 10px;
+    gap: 20px;
+    width: 100%;
+}
+
+.card {
+    width: 320px;
+}
+
+.card_icons {
+    font-size: large;
+}
+
+.card_icons:hover {
+    cursor: pointer;
+}

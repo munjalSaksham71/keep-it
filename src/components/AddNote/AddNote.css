@@ -1,0 +1,24 @@
+.add_note {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 7rem;
+}
+
+input {
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.title {
+    width: 20rem;
+    height: 1rem;
+    padding: 10px;
+}
+
+.note {
+    width: 20rem;
+    height: 5rem;
+    padding: 1px 10px;
+}
