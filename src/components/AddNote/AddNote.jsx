@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { useNote } from "../../context/note-context";
 import "./AddNote.css";
 
-const AddNote = (props) => {
+const AddNote = () => {
   const [note, setNote] = useState({
     title: "",
     content: "",
   });
 
-  function handleChange(e) {
+  const { dispatch } = useNote();
+
+  const handleChange = (e) => {
     setNote((prevNote) => {
       return {
         ...prevNote,
@@ -18,7 +21,7 @@ const AddNote = (props) => {
 
   const submitNote = (e) => {
     e.preventDefault();
-    props.onAdd(note);
+    dispatch({type: 'ADD_NOTE', payload: note})
     setNote({
       title: "",
       content: "",

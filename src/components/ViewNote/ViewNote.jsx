@@ -1,24 +1,29 @@
 import "./ViewNote.css";
-import { AiFillDelete } from 'react-icons/ai'
+import { AiFillDelete } from "react-icons/ai";
+import { useNote } from "../../context/note-context";
 
-const ViewNote = (props) => {
-    const {notes} = props
+const ViewNote = () => {
+  const {
+    state: { notes },
+    dispatch
+  } = useNote();
 
-    return (
+  return (
     <div className="cards">
       {notes.map((note, i) => {
+        console.log(note);
         return (
-          <div class="card m-2 up-curve-border">
-            <div class="card_main pl-3 mt-2 mb-1">
-              <div class="card_topic mb-1">{note.title}</div>
+          <div key={i} className="card m-2 up-curve-border">
+            <div className="card_main pl-3 mt-2 mb-1">
+              <div className="card_topic mb-1">{note.title}</div>
             </div>
-            <div class="card_content pl-3 pr-1 mt-2">{note.content}</div>
-            <div class="card_footer mt-2 mb-2 pl-3">
-              <div class="card_buttons">
-                <div class="card_button">Pin to top</div>
+            <div className="card_content pl-3 pr-1 mt-2">{note.content}</div>
+            <div className="card_footer mt-2 mb-2 pl-3">
+              <div className="card_buttons">
+                <div className="card_button">Pin to top</div>
               </div>
-              <div class="card_icons">
-                <AiFillDelete onClick={() => props.onDelete(i)} />
+              <div className="card_icons">
+                <AiFillDelete onClick={() => dispatch({type: 'REMOVE_NOTE', payload: note})} />
               </div>
             </div>
           </div>
