@@ -1,15 +1,20 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import AddNote from './components/AddNote/AddNote';
 import Header from './components/Header/Header';
-import ViewNote from './components/ViewNote/ViewNote';
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
+import SignupScreen from './screens/SignupScreen';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 
 const App = () => {
-
   return (
     <div className="App">
       <Header />
-      <AddNote  />
-      <ViewNote />
+      <Routes>
+        <Route path="/" element={ <PrivateRoute> <HomeScreen /> </PrivateRoute>} />
+        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/signup" element={<SignupScreen />} />
+      </Routes>
     </div>
   );
 }

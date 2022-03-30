@@ -4,13 +4,17 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { NoteContextProvider } from "./context/note-context";
+import { AuthContextProvider } from "./context/auth-context";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <NoteContextProvider>
-      <App />
-    </NoteContextProvider>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <AuthContextProvider>
+      <NoteContextProvider>
+        <App />
+      </NoteContextProvider>
+    </AuthContextProvider>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 
