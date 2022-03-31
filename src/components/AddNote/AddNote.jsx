@@ -8,7 +8,7 @@ const AddNote = () => {
     content: "",
   });
 
-  const { dispatch } = useNote();
+  const { createNote } = useNote();
 
   const handleChange = (e) => {
     setNote((prevNote) => {
@@ -21,7 +21,7 @@ const AddNote = () => {
 
   const submitNote = (e) => {
     e.preventDefault();
-    dispatch({type: 'ADD_NOTE', payload: note})
+    createNote(note.title, note.content);
     setNote({
       title: "",
       content: "",
@@ -37,14 +37,15 @@ const AddNote = () => {
         placeholder="Title"
         className="title"
       />
-      <input
+      <textarea
         name="content"
         onChange={handleChange}
         value={note.content}
         placeholder="Take a note..."
         className="note"
+        rows={3}
       />
-      <button onClick={submitNote} className="btn btn-primary">Add</button>
+      <button onClick={submitNote} className="btn btn-primary mt-2">Add</button>
     </form>
   );
 };
