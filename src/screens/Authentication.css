@@ -1,0 +1,13 @@
+.form-height {
+    width: 35%;
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.grey-text {
+    text-decoration: underline;
+    color: var(--dark-grey);
+}

@@ -11,3 +11,20 @@
 .heading {
     font-family: 'Montserrat', sans-serif;
 }
+
+.link {
+    color: var(--white);
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.header_link{
+    margin-right: 5rem;
+}
+
+.header_info {
+    margin-right: 1rem;
+}
