@@ -1,6 +1,7 @@
 form {
     width: 30rem;
     margin: auto;
+    box-shadow: 10px 8px #fff;
 }
 
 .add_note {
@@ -27,10 +28,14 @@ input, textarea {
 
 .note {
     width: 30rem;
-    height: 5rem;
+    height: 8rem;
     padding: 10px;
     font-weight: 300;
     font-size: large;
+}
+
+.btn-align {
+    margin-top: 5rem;
 }
 
 @media screen and (max-width: 550px) {

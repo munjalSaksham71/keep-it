@@ -1,53 +1,76 @@
 import { useState } from "react";
+import ReactQuill from "react-quill";
 import { useNote } from "../../context/note-context";
+import "react-quill/dist/quill.snow.css";
 import "./AddNote.css";
 
 const AddNote = () => {
-  const [note, setNote] = useState({
-    title: "",
-    content: "",
-  });
-
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [expand, setExpand] = useState(false);
   const { createNote } = useNote();
-
-  const handleChange = (e) => {
-    setNote((prevNote) => {
-      return {
-        ...prevNote,
-        [e.target.name]: e.target.value,
-      };
-    });
-  }
 
   const submitNote = (e) => {
     e.preventDefault();
-    createNote(note.title, note.content);
-    setNote({
-      title: "",
-      content: "",
-    });
+    createNote(title, content);
+    setTitle("");
+    setContent("");
   };
 
   return (
     <form className="add_note">
       <input
         name="title"
-        onChange={handleChange}
-        value={note.title}
-        placeholder="Title"
+        onChange={(e) => setTitle(e.target.value)}
+        onClick={() => setExpand(true)}
+        value={title}
+        placeholder={expand ? "Title" : "Add a Note ..."}
         className="title"
       />
-      <textarea
-        name="content"
-        onChange={handleChange}
-        value={note.content}
-        placeholder="Take a note..."
-        className="note"
-        rows={3}
-      />
-      <button onClick={submitNote} className="btn btn-primary mt-2">Add</button>
+      {expand === true && (
+        <div>
+          <ReactQuill
+            theme="snow"
+            value={content}
+            onChange={setContent}
+            modules={modules}
+            formats={formats}
+            className="note"
+            placeholder="Add a note..."
+          />
+          <button onClick={submitNote} className="btn btn-primary btn-align">
+            Add
+          </button>
+        </div>
+      )}
     </form>
   );
 };
+
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["clean"],
+  ],
+};
+
+const formats = [
+  "header",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+];
 
 export default AddNote;

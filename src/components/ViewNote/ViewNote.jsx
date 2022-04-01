@@ -1,6 +1,7 @@
 import "./ViewNote.css";
 import { AiFillDelete } from "react-icons/ai";
 import { useNote } from "../../context/note-context";
+import parse from 'html-react-parser';
 
 const ViewNote = () => {
   const { notes, deleteNote } = useNote();
@@ -14,7 +15,7 @@ const ViewNote = () => {
             <div className="card_main pl-3 mt-2 mb-1">
               <div className="card_topic mb-1">{note.title}</div>
             </div>
-            <div className="card_content pl-3 pr-1 mt-2">{note.content}</div>
+            <div className="card_content pl-3 pr-1 mt-2">{parse(note.content)}</div>
             <div className="card_footer mt-2 mb-2 pl-3">
               <div className="card_buttons">
                 <div className="card_button">Pin to top</div>
