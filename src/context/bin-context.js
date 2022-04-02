@@ -20,7 +20,7 @@ const BinContextProvider = ({children}) => {
     };
 
     const deleteBinNote = async (id) => {
-        const noteDoc = doc(db, "archive", id);
+        const noteDoc = doc(db, "bin", id);
         try {
             await deleteDoc(noteDoc);
             const temp = [...binNotes];
