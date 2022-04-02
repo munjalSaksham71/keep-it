@@ -7,13 +7,16 @@ import { NoteContextProvider } from "./context/note-context";
 import { AuthContextProvider } from "./context/auth-context";
 import { BrowserRouter } from "react-router-dom";
 import { ArchiveContextProvider } from "./context/archive-context";
+import { BinContextProvider } from "./context/bin-context";
 
 ReactDOM.render(
   <BrowserRouter>
     <AuthContextProvider>
       <NoteContextProvider>
         <ArchiveContextProvider>
-          <App />
+          <BinContextProvider>
+            <App />
+          </BinContextProvider>
         </ArchiveContextProvider>
       </NoteContextProvider>
     </AuthContextProvider>

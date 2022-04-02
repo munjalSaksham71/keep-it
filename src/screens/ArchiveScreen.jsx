@@ -21,7 +21,7 @@ const ArchiveScreen = () => {
   return (
     <div className="layout">
       <SideBar />
-
+      <p className="heading2 archive_heading">Archive Notes</p>
       <div className="cards">
         {archiveNotes.map((note, i) => (
           <div key={i} className="card m-2 up-curve-border">
