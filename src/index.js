@@ -6,12 +6,15 @@ import reportWebVitals from "./reportWebVitals";
 import { NoteContextProvider } from "./context/note-context";
 import { AuthContextProvider } from "./context/auth-context";
 import { BrowserRouter } from "react-router-dom";
+import { ArchiveContextProvider } from "./context/archive-context";
 
 ReactDOM.render(
   <BrowserRouter>
     <AuthContextProvider>
       <NoteContextProvider>
-        <App />
+        <ArchiveContextProvider>
+          <App />
+        </ArchiveContextProvider>
       </NoteContextProvider>
     </AuthContextProvider>
   </BrowserRouter>,

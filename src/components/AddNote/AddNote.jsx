@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import { useNote } from "../../context/note-context";
+import { useAuth } from "../../context/auth-context";
 import "react-quill/dist/quill.snow.css";
 import "./AddNote.css";
 
@@ -9,10 +10,11 @@ const AddNote = () => {
   const [content, setContent] = useState("");
   const [expand, setExpand] = useState(false);
   const { createNote } = useNote();
+  const { user } = useAuth();
 
   const submitNote = (e) => {
     e.preventDefault();
-    createNote(title, content);
+    createNote(title, content, user.uid);
     setTitle("");
     setContent("");
   };
