@@ -10,9 +10,9 @@ const NoteContextProvider = ({children}) => {
     const [notes, setNotes] = useState([]);
     const notesCollectionRef = collection(db, "notes");
 
-    const createNote = async (title, content) => {
+    const createNote = async (title, content, userId) => {
         try {
-            await addDoc(notesCollectionRef, { title, content });
+            await addDoc(notesCollectionRef, { title, content, userId });
             setNotes((prevState) => ([...prevState, {title, content}]))
         } catch (error) {
             alert(error.message);
@@ -34,14 +34,14 @@ const NoteContextProvider = ({children}) => {
     useEffect(() => {
         const getNotes = async () => {
             const data = await getDocs(notesCollectionRef);
-            setNotes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+            setNotes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
           };
 
           getNotes();
           // eslint-disable-next-line
     }, [])
 
-    return <NoteContext.Provider value={{notes, createNote,deleteNote}}>{children}</NoteContext.Provider>
+    return <NoteContext.Provider value={{notes, createNote, deleteNote}}>{children}</NoteContext.Provider>
 }
 
 export {useNote, NoteContextProvider}

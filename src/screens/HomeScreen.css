@@ -1,0 +1,11 @@
+.layout {
+    display: flex;
+    flex-flow: row wrap;
+    padding-top: 4rem;
+}
+
+.main {
+    margin-left: 8rem;
+    padding-top: 4rem;
+    padding-left: 3rem;
+}
