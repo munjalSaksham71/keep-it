@@ -5,17 +5,24 @@ import { BiArchiveIn } from 'react-icons/bi'
 import { useNote } from "../../context/note-context";
 import { useAuth } from "../../context/auth-context";
 import { useArchive } from "../../context/archive-context";
+import { useBin } from '../../context/bin-context'
 import parse from 'html-react-parser';
 
 const ViewNote = () => {
   const { notes, deleteNote } = useNote();
   const { user } = useAuth();
   const { createArchiveNotes } = useArchive();
+  const { createBinNotes } = useBin();
   const userNotes = notes.filter((note) => note.userId === user.uid); 
 
   const sendToArchiveHandler = async (note) => {
    await createArchiveNotes(note.title, note.content, user.uid)
    await deleteNote(note.id);
+  }
+
+  const sendToBin = async (note) => {
+    await createBinNotes(note.title, note.content, user.uid)
+    await deleteNote(note.id)
   }
 
   return (
@@ -32,7 +39,7 @@ const ViewNote = () => {
                 <div className="card_button" onClick={() => sendToArchiveHandler(note)} ><BiArchiveIn /></div>
               </div>
               <div className="card_icons">
-                <AiFillDelete onClick={() => deleteNote(note.id)} />
+                <AiFillDelete onClick={() => sendToBin(note)} />
               </div>
             </div>
           </div>
