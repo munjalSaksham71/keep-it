@@ -12,17 +12,18 @@ const TrashScreen = () => {
   const { user } = useAuth();
   const { createNote } = useNote();
 
-  const restoreHandler = async (note) => {
+  const restoreHandler = async (i, note) => {
     await createNote(note.title, note.content, user.uid);
-    await deleteBinNote(note.id);
+    await deleteBinNote(i, note.id);
   }
 
+  const userTrashNotes = binNotes.filter((note) => note.userId === user.uid)
     return (
     <div className="layout">
       <SideBar />
       <p className="heading1 bin_heading">Bin</p>
       <div className="cards">
-        {binNotes.map((note, i) => (
+        {userTrashNotes.map((note, i) => (
           <div key={i} className="card m-2 up-curve-border">
             <div className="card_main pl-3 mt-2 mb-1">
               <div className="card_topic mb-1">{note.title}</div>
@@ -34,7 +35,7 @@ const TrashScreen = () => {
               <div className="card_buttons">
                 <div
                   className="card_button"
-                  onClick={() => deleteBinNote(note.id)}
+                  onClick={() => deleteBinNote(i, note.id)}
                 >
                   <AiFillDelete />
                 </div>

@@ -17,16 +17,15 @@ const ViewNote = () => {
   const { user } = useAuth();
   const { createArchiveNotes } = useArchive();
   const { createBinNotes } = useBin();
-  const userNotes = notes.filter((note) => note.userId === user.uid);
 
   const sendToArchiveHandler = async (note) => {
     await createArchiveNotes(note.title, note.content, user.uid);
     await deleteNote(note.id);
   };
 
-  const sendToBin = async (note) => {
+  const sendToBin = async (i, note) => {
     await createBinNotes(note.title, note.content, user.uid);
-    await deleteNote(note.id);
+    await deleteNote(i, note.id);
   };
 
   const dropdownHandler = (id) => {
@@ -38,7 +37,7 @@ const ViewNote = () => {
     SetIsDropdownOpen(false);
   }
 
-  console.log(cardColor);
+  const userNotes = notes.filter((note) => note.userId === user.uid)
 
   return (
     <div className="cards">
@@ -80,7 +79,7 @@ const ViewNote = () => {
               </div>
             )}
             <div className="card_icons">
-              <AiFillDelete onClick={() => sendToBin(note)} />
+              <AiFillDelete onClick={() => sendToBin(i, note)} />
             </div>
           </div>
         </div>

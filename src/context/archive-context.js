@@ -19,12 +19,12 @@ const ArchiveContextProvider = ({children}) => {
         }
     };
 
-    const deleteArchiveNote = async (id) => {
+    const deleteArchiveNote = async (i,id) => {
         const noteDoc = doc(db, "archive", id);
         try {
             await deleteDoc(noteDoc);
             const temp = [...archiveNotes];
-            temp.splice(id, 1);
+            temp.splice(i, 1);
             setArchiveNotes(temp);      
         } catch (error) {
             alert(error.message);

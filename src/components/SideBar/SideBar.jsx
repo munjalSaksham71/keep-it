@@ -8,16 +8,16 @@ const SideBar = () => {
   return (
     <div className="sidebar fixed">
       <div className="icons">
-        <Link to="/">
+        <Link to="/" className="link">
           <AiFillFile />
         </Link>
-        <Link to="/archive">
+        <Link to="/archive" className="link">
         <BsFillArchiveFill />
         </Link>
-        <Link to="/trash">
+        <Link to="/trash" className="link">
         <AiFillDelete />
         </Link>
-        <Link to="/user">
+        <Link to="/user" className="link">
         <BiUser />
         </Link>
       </div>
