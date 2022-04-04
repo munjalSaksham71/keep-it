@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import {
   collection,
-  getDocs,
   addDoc,
   deleteDoc,
   doc,
@@ -35,14 +34,6 @@ const BinContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    // const getBinNotes = async () => {
-    //     const data = await getDocs(binCollectionRef);
-    //     setBinNotes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-    //   };
-
-    //   getBinNotes();
-    // eslint-disable-next-line
-
     const unsub = onSnapshot(binCollectionRef, (docs) => {
       setBinNotes(docs.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
