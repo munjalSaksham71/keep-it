@@ -12,8 +12,8 @@ const ArchiveScreen = () => {
   const { createNote } = useNote();
   const { user } = useAuth();
 
-  const removeFromArchive = async (i,note) => {
-      await deleteArchiveNote(i,note.id);
+  const removeFromArchive = async (note) => {
+      await deleteArchiveNote(note.id);
       await createNote(note.title, note.content, user.uid)
   }
 
@@ -34,7 +34,7 @@ const ArchiveScreen = () => {
             </div>
             <div className="card_footer mt-2 mb-2 pl-3">
               <div className="card_buttons">
-                <div className="card_button" onClick={() => removeFromArchive(i,note)} ><BiArchiveOut /></div>
+                <div className="card_button" onClick={() => removeFromArchive(note)} ><BiArchiveOut /></div>
               </div>
             </div>
           </div>

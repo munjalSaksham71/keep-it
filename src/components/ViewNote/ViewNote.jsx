@@ -23,9 +23,9 @@ const ViewNote = () => {
     await deleteNote(note.id);
   };
 
-  const sendToBin = async (i, note) => {
+  const sendToBin = async (note) => {
     await createBinNotes(note.title, note.content, user.uid);
-    await deleteNote(i, note.id);
+    await deleteNote(note.id);
   };
 
   const dropdownHandler = (id) => {
@@ -79,7 +79,7 @@ const ViewNote = () => {
               </div>
             )}
             <div className="card_icons">
-              <AiFillDelete onClick={() => sendToBin(i, note)} />
+              <AiFillDelete onClick={() => sendToBin(note)} />
             </div>
           </div>
         </div>
