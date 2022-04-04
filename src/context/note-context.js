@@ -42,7 +42,7 @@ const NoteContextProvider = ({ children }) => {
     return () => {
       unsub();
     };
-  }, []);
+  }, [notesCollectionRef]);
 
   return (
     <NoteContext.Provider value={{ notes, createNote, deleteNote }}>
