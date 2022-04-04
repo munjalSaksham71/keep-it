@@ -36,13 +36,14 @@ const NoteContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsub = onSnapshot(notesCollectionRef, (docs) => {
-      setNotes(docs.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setNotes(() => docs.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
 
     return () => {
       unsub();
     };
-  }, [notesCollectionRef]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <NoteContext.Provider value={{ notes, createNote, deleteNote }}>
