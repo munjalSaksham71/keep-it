@@ -1,5 +1,5 @@
 import "./ViewNote.css";
-import { AiFillDelete } from "react-icons/ai";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { VscPinned } from "react-icons/vsc";
 import { IoIosColorPalette } from "react-icons/io";
 import { BiArchiveIn } from "react-icons/bi";
@@ -9,14 +9,18 @@ import { useArchive } from "../../context/archive-context";
 import { useBin } from "../../context/bin-context";
 import parse from "html-react-parser";
 import { useState } from "react";
+import ModalEdit from "../Modal/ModalEdit";
+import { useModal } from "../../context/model-context";
 
 const ViewNote = () => {
   const [isDropdownOpen, SetIsDropdownOpen] = useState({id: '', isOpen: false});
   const [cardColor, setCardColor] = useState({id: '', color: ''});
+  const [updateData, setUpdateData] = useState({})
   const { notes, deleteNote } = useNote();
   const { user } = useAuth();
   const { createArchiveNotes } = useArchive();
   const { createBinNotes } = useBin();
+  const { modalState: { isModalOpen }, modalDispatch } = useModal();
 
   const sendToArchiveHandler = async (note) => {
     await createArchiveNotes(note.title, note.content, user.uid);
@@ -35,6 +39,11 @@ const ViewNote = () => {
   const colorPickerHandler = (id, color) => {
     setCardColor({id, color});
     SetIsDropdownOpen(false);
+  }
+
+  const modelOpenHandler = (note) => {
+    modalDispatch({type: 'OPEN'})
+    setUpdateData(note);
   }
 
   const userNotes = notes.filter((note) => note.userId === user.uid)
@@ -66,6 +75,12 @@ const ViewNote = () => {
               >
                 <IoIosColorPalette />
               </div>
+              <div 
+                className="card_button"
+                onClick={() => modelOpenHandler(note)}
+              >
+                <AiFillEdit />
+              </div>
             </div>
             {isDropdownOpen.id === i && (
               <div className="dropdown-content mt-3">
@@ -84,6 +99,7 @@ const ViewNote = () => {
           </div>
         </div>
       ))}
+      {isModalOpen && <ModalEdit note={updateData}/>}
     </div>
   );
 };

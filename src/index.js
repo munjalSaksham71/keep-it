@@ -8,6 +8,7 @@ import { AuthContextProvider } from "./context/auth-context";
 import { BrowserRouter } from "react-router-dom";
 import { ArchiveContextProvider } from "./context/archive-context";
 import { BinContextProvider } from "./context/bin-context";
+import { ModalContextProvider } from "./context/model-context";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -15,7 +16,9 @@ ReactDOM.render(
       <NoteContextProvider>
         <ArchiveContextProvider>
           <BinContextProvider>
-            <App />
+            <ModalContextProvider>
+              <App />
+            </ModalContextProvider>
           </BinContextProvider>
         </ArchiveContextProvider>
       </NoteContextProvider>
