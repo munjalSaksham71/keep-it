@@ -17,12 +17,13 @@ const TrashScreen = () => {
     await deleteBinNote(note.id);
   }
 
+  const userTrashNotes = binNotes.filter((note) => note.userId === user.uid)
     return (
     <div className="layout">
       <SideBar />
       <p className="heading1 bin_heading">Bin</p>
       <div className="cards">
-        {binNotes.map((note, i) => (
+        {userTrashNotes.map((note, i) => (
           <div key={i} className="card m-2 up-curve-border">
             <div className="card_main pl-3 mt-2 mb-1">
               <div className="card_topic mb-1">{note.title}</div>

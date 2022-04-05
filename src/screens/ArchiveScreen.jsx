@@ -11,19 +11,20 @@ const ArchiveScreen = () => {
   const { archiveNotes, deleteArchiveNote } = useArchive();
   const { createNote } = useNote();
   const { user } = useAuth();
-  console.log(archiveNotes);
 
   const removeFromArchive = async (note) => {
       await deleteArchiveNote(note.id);
       await createNote(note.title, note.content, user.uid)
   }
 
+  const userArchiveNotes = archiveNotes.filter((note) => note.userId === user.uid)
+
   return (
     <div className="layout">
       <SideBar />
       <p className="heading2 archive_heading">Archive Notes</p>
       <div className="cards">
-        {archiveNotes.map((note, i) => (
+        {userArchiveNotes.map((note, i) => (
           <div key={i} className="card m-2 up-curve-border">
             <div className="card_main pl-3 mt-2 mb-1">
               <div className="card_topic mb-1">{note.title}</div>

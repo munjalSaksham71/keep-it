@@ -17,6 +17,7 @@ const AddNote = () => {
     createNote(title, content, user.uid);
     setTitle("");
     setContent("");
+    setExpand(false);
   };
 
   return (
