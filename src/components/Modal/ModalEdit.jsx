@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNote } from "../../context/note-context";
 import { useModal } from "../../context/model-context";
 import "./Modal.css";
+import ReactQuill from "react-quill";
 
 const ModalEdit = ({ note }) => {
   console.log(note);
@@ -29,18 +30,19 @@ const ModalEdit = ({ note }) => {
         className="modal_title"
       />
         <div>
-          <textarea
-            onChange={(e) => setUpdateContent(e.target.value)}
-            name="note"
+        <ReactQuill
+            theme="snow"
             value={updateContent}
-            placeholder={"Add a note..."}
-            className="modal_note"
-            rows={3}
+            onChange={setUpdateContent}
+            modules={modules}
+            formats={formats}
+            className="note"
+            placeholder="Add a note..."
           />
-          <button onClick={updateDoc} className="btn btn-primary mt-2">
+          <button onClick={updateDoc} className="btn btn-primary btn-align">
             Update
           </button>
-          <button onClick={() => modalDispatch({type: 'CLOSE'})} className="btn btn-error mt-2 ml-2">
+          <button onClick={() => modalDispatch({type: 'CLOSE'})} className="btn btn-error ml-2">
             Cancel
           </button>
         </div>
@@ -49,5 +51,31 @@ const ModalEdit = ({ note }) => {
     </div>
   );
 };
+
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["clean"],
+  ],
+};
+
+const formats = [
+  "header",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+];
 
 export default ModalEdit;
