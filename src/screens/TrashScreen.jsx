@@ -13,7 +13,7 @@ const TrashScreen = () => {
   const { createNote } = useNote();
 
   const restoreHandler = async (note) => {
-    await createNote(note.title, note.content, user.uid);
+    await createNote(note.title, note.content, note.tag, note.color, user.uid);
     await deleteBinNote(note.id);
   }
 
