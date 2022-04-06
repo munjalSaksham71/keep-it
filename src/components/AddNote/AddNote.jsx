@@ -2,33 +2,47 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import { useNote } from "../../context/note-context";
 import { useAuth } from "../../context/auth-context";
+import {  AiOutlineStop } from 'react-icons/ai'
+import { IoMdArrowDropdown } from 'react-icons/io'
 import "react-quill/dist/quill.snow.css";
 import "./AddNote.css";
+import "../ViewNote/ViewNote.css";
 
 const AddNote = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [tag, setTag] = useState("");
+  const [color, setColor] = useState("default")
   const [expand, setExpand] = useState(false);
+  const [isDropdownOpen, SetIsDropdownOpen] = useState(false);
   const { createNote } = useNote();
   const { user } = useAuth();
 
   const submitNote = (e) => {
     e.preventDefault();
-    createNote(title, content, user.uid);
+    createNote(title, content, tag, color,user.uid);
     setTitle("");
     setContent("");
+    setColor("");
     setExpand(false);
   };
 
+  const cancelHandler = () => {
+    setExpand(false);
+    setColor("default");
+    setTitle("");
+    setContent("");
+  }
+
   return (
-    <form className="add_note">
+    <form className={`${color} add_note`}>
       <input
         name="title"
         onChange={(e) => setTitle(e.target.value)}
         onClick={() => setExpand(true)}
         value={title}
         placeholder={expand ? "Title" : "Add a Note ..."}
-        className="title"
+        className={`title ${color}`} 
       />
       {expand === true && (
         <div>
@@ -41,8 +55,31 @@ const AddNote = () => {
             className="note"
             placeholder="Add a note..."
           />
+          <div className="container flex-align">
+            <div className="tag_btn btn" onClick={() => SetIsDropdownOpen(isDropdownOpen ? false : true)}> {tag ? `${tag}` : `Tags`} <IoMdArrowDropdown /> </div>
+            {isDropdownOpen && (
+              <div className="dropdown-content container mt-3">
+                <div className="tag" onClick={() => {setTag("Work"); SetIsDropdownOpen(false)}}> Work </div>
+                <div className="tag" onClick={() => {setTag("Teams"); SetIsDropdownOpen(false)}}> Teams </div>
+                <div className="tag" onClick={() => {setTag("Family"); SetIsDropdownOpen(false)}}> family </div>
+                <div className="tag" onClick={() => {setTag("exercise"); SetIsDropdownOpen(false)}}> Exercise </div>
+                <div className="tag" onClick={() => {setTag("None"); SetIsDropdownOpen(false)}}> <AiOutlineStop /></div>
+              </div>
+            )}
+            <div className="container ml-auto pt-1">Card Color: 
+              <div className="color_pallete primary" onClick={() => setColor('primary')}></div>
+              <div className="color_pallete secondary" onClick={() => setColor('secondary')}></div>
+              <div className="color_pallete danger" onClick={() => setColor('danger')}></div>
+              <div className="color_pallete warning" onClick={() => setColor('warning')}></div>
+              <div className="color_pallete success" onClick={() => setColor('success')}></div>
+              <AiOutlineStop className="color_pallete default" onClick={() => setColor('default')}/> 
+            </div>
+          </div>
           <button onClick={submitNote} className="btn btn-primary btn-align">
             Add
+          </button>
+          <button onClick={cancelHandler} className="btn btn-error ml-3 btn-align">
+            Cancel
           </button>
         </div>
       )}

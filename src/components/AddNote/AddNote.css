@@ -8,7 +8,7 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 7rem;
+    margin-top: 7rem;
     z-index: 0;
 }
 
@@ -19,11 +19,12 @@ input, textarea {
 }
 
 .title {
-    width: 30rem;
+    width: 28rem;
     height: 1rem;
     padding: 10px;
     font-weight: 500;
     font-size: large;
+    border: 1px solid #000;
 }
 
 .note {
@@ -35,7 +36,80 @@ input, textarea {
 }
 
 .btn-align {
-    margin-top: 5rem;
+    margin-top: 3rem;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.flex-align {
+    margin-top: 3rem;
+    margin-left: 1rem;
+}
+
+.dropdown-content {
+    position: fixed;
+    gap: 12px;
+    margin-top: 2.5rem;
+    margin-left: 1.25rem;
+    padding: 6px;
+    z-index: 1;
+    box-shadow: 10px 10px 10px #999;
+}
+
+.tag {
+    padding: 6px 12px;
+    border: 1px solid var(--light-primary)
+}
+
+.tag:hover {
+    cursor: pointer;
+}
+
+.tag_btn {
+    border: 1px solid var(--light-danger);
+}
+
+.color_pallete {
+    height: 24px;
+    width: 24px;
+    margin: 0 6px;
+    border-radius: 50%;
+}
+
+.color_pallete:hover {
+    cursor: pointer;
+}
+
+.primary {
+    background: var(--light-primary);
+    color: var(--white);
+}
+
+.secondary {
+    background: var(--light-secondary);
+    color: var(--white);
+}
+
+.danger{
+    background: var(--light-danger);
+    color: var(--white);
+}
+
+.warning {
+    background: var(--light-warning);
+    color: var(--white);
+}
+
+.success {
+    background: var(--light-success);
+    color: var(--white);
+}
+
+.default {
+    background: var(--white);
 }
 
 @media screen and (max-width: 550px) {
