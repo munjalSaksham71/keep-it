@@ -6,6 +6,7 @@ import '../AddNote/AddNote.css';
 import ReactQuill from "react-quill";
 import { AiOutlineStop } from "react-icons/ai";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { tags, colors } from '../AddNote/AddNote'
 
 const ModalEdit = ({ note }) => {
   const [isDropdownOpen, SetIsDropdownOpen] = useState(false);
@@ -24,15 +25,15 @@ const ModalEdit = ({ note }) => {
 
   return (
     <div className="modal">
-      <div className="modal_content">
+      <div className={`modal_content`}>
         <div className="heading2">Update Note</div>
-      <form className="edit_note mt-4">
+      <form className={`edit_note mt-4 ${updateColor}`}>
       <input
         name="title"
         onChange={(e) => setUpdateTitle(e.target.value)}
         value={updateTitle}
         placeholder={"Add a Title"}
-        className="modal_title"
+        className={`modal_title ${updateColor}`}
       />
         <div>
         <ReactQuill
@@ -48,19 +49,16 @@ const ModalEdit = ({ note }) => {
             <div className="tag_btn btn" onClick={() => SetIsDropdownOpen(isDropdownOpen ? false : true)}> {updateTag ? `${updateTag}` : `Tags`} <IoMdArrowDropdown /> </div>
             {isDropdownOpen && (
               <div className="dropdown-content container mt-3">
-                <div className="tag" onClick={() => {setUpdateTag("Work"); SetIsDropdownOpen(false)}}> Work </div>
-                <div className="tag" onClick={() => {setUpdateTag("Teams"); SetIsDropdownOpen(false)}}> Teams </div>
-                <div className="tag" onClick={() => {setUpdateTag("Family"); SetIsDropdownOpen(false)}}> family </div>
-                <div className="tag" onClick={() => {setUpdateTag("exercise"); SetIsDropdownOpen(false)}}> Exercise </div>
+                {tags.map((tag) => (
+                  <div className="tag" onClick={() => {setUpdateTag(tag); SetIsDropdownOpen(false)}}>{tag}</div>
+                ))}
                 <div className="tag" onClick={() => {setUpdateTag("None"); SetIsDropdownOpen(false)}}> <AiOutlineStop /></div>
               </div>
             )}
             <div className="container ml-auto pt-1">Card Color: 
-              <div className="color_pallete primary" onClick={() => setUpdateColor('primary')}></div>
-              <div className="color_pallete secondary" onClick={() => setUpdateColor('secondary')}></div>
-              <div className="color_pallete danger" onClick={() => setUpdateColor('danger')}></div>
-              <div className="color_pallete warning" onClick={() => setUpdateColor('warning')}></div>
-              <div className="color_pallete success" onClick={() => setUpdateColor('success')}></div>
+            {colors.map((color) => (
+                   <div className={`color_pallete ${color}`} onClick={() => setUpdateColor(color)}></div>
+            ))}
               <AiOutlineStop className="color_pallete default" onClick={() => setUpdateColor('default')}/> 
             </div>
           </div>
