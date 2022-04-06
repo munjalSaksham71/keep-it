@@ -63,7 +63,7 @@ const LoginScreen = () => {
       <button onClick={guestLoginHandler} className="btn btn-outline-primary m-auto mt-2">
         Login as a Guest.
       </button>
-      <span className="wrap mt-2">
+      <span className="mt-2">
         New User?
         <Link to="/signup" className="ml-1 bolder grey-text">
           Register here
