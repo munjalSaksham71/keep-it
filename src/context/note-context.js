@@ -5,6 +5,7 @@ import {
   deleteDoc,
   doc,
   onSnapshot,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebase/config";
 
@@ -24,8 +25,16 @@ const NoteContextProvider = ({ children }) => {
     }
   };
 
+  const updateNote = async (title, content, id) => {
+    const noteDoc = doc(db, "notes", id);
+    try {
+      await updateDoc(noteDoc, {title : title, content: content})
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
   const deleteNote = async (id) => {
-    console.log(id);
     const noteDoc = doc(db, "notes", id);
     try {
       await deleteDoc(noteDoc);
@@ -46,7 +55,7 @@ const NoteContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <NoteContext.Provider value={{ notes, createNote, deleteNote }}>
+    <NoteContext.Provider value={{ notes, createNote, deleteNote, updateNote }}>
       {children}
     </NoteContext.Provider>
   );
