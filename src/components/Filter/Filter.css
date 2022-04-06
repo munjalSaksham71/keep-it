@@ -1,0 +1,20 @@
+.filter_content {
+    position: relative;
+    margin-top: 3rem;
+    margin-right: 5rem;
+}
+
+.dropdown_gap {
+    gap: 12px;
+    box-shadow: 10px 10px 10px #999;
+}
+
+.dropdown_tags {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+}

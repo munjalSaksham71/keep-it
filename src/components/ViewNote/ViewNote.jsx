@@ -10,6 +10,8 @@ import parse from "html-react-parser";
 import { useState } from "react";
 import ModalEdit from "../Modal/ModalEdit";
 import { useModal } from "../../context/model-context";
+import { useFilter } from "../../context/filter-context";
+
 
 const ViewNote = () => {
   const [updateData, setUpdateData] = useState({})
@@ -18,6 +20,7 @@ const ViewNote = () => {
   const { createArchiveNotes } = useArchive();
   const { createBinNotes } = useBin();
   const { modalState: { isModalOpen }, modalDispatch } = useModal();
+  const { label } = useFilter();
 
   const sendToArchiveHandler = async (note) => {
     await createArchiveNotes(note.title, note.content, user.uid);
@@ -36,9 +39,22 @@ const ViewNote = () => {
 
   const userNotes = notes.filter((note) => note.userId === user.uid)
 
+  const userFilteredNotes = () => {
+    let filteredNotes = userNotes
+
+    if(!label || label === 'None') {
+      filteredNotes = userNotes
+    } else {
+      filteredNotes = userNotes.filter((note) => note.tag === label);
+    }
+    return filteredNotes;
+  }
+
+  const filteredUserNotes = userFilteredNotes();
+
   return (
     <div className="cards">
-      {userNotes.map((note, i) => (
+      {filteredUserNotes.map((note, i) => (
         <div key={i} className={`${note.color} card m-2 up-curve-border`}>
           <div className="card_main pl-3 mt-2 mb-1">
             <div className="card_topic mb-1">{note.title}</div>
@@ -68,7 +84,7 @@ const ViewNote = () => {
               <AiFillDelete onClick={() => sendToBin(note)} />
             </div>
           </div>
-          {note.tag !== 'None' && <div class="card_badge btn btn-tag">{note.tag}</div> }
+          {note.tag !== 'None' && <div className="card_badge btn btn-tag">{note.tag}</div> }
         </div>
       ))}
       {isModalOpen && <ModalEdit note={updateData}/>}
