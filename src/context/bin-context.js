@@ -16,9 +16,9 @@ const BinContextProvider = ({ children }) => {
   const [binNotes, setBinNotes] = useState([]);
   const binCollectionRef = collection(db, "bin");
 
-  const createBinNotes = async (title, content, userId) => {
+  const createBinNotes = async (title, content, tag, color , userId) => {
     try {
-      await addDoc(binCollectionRef, { title, content, userId });
+      await addDoc(binCollectionRef, { title, content, tag, color , userId });
     } catch (error) {
       alert(error.message);
     }

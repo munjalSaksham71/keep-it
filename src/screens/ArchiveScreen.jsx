@@ -14,7 +14,7 @@ const ArchiveScreen = () => {
 
   const removeFromArchive = async (note) => {
       await deleteArchiveNote(note.id);
-      await createNote(note.title, note.content, user.uid)
+      await createNote(note.title, note.content, note.tag, note.color , user.uid)
   }
 
   const userArchiveNotes = archiveNotes.filter((note) => note.userId === user.uid)

@@ -16,9 +16,9 @@ const ArchiveContextProvider = ({ children }) => {
   const [archiveNotes, setArchiveNotes] = useState([]);
   const archiveCollectionRef = collection(db, "archive");
 
-  const createArchiveNotes = async (title, content, userId) => {
+  const createArchiveNotes = async (title, content, tag, color , userId) => {
     try {
-      await addDoc(archiveCollectionRef, { title, content, userId });
+      await addDoc(archiveCollectionRef, { title, content, tag, color , userId });
     } catch (error) {
       alert(error.message);
     }

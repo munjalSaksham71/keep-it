@@ -20,12 +20,12 @@ const ViewNote = () => {
   const { modalState: { isModalOpen }, modalDispatch } = useModal();
 
   const sendToArchiveHandler = async (note) => {
-    await createArchiveNotes(note.title, note.content, user.uid);
+    await createArchiveNotes(note.title, note.content, note.tag, note.color , user.uid);
     await deleteNote(note.id);
   };
 
   const sendToBin = async (note) => {
-    await createBinNotes(note.title, note.content, user.uid);
+    await createBinNotes(note.title, note.content, note.tag, note.color, user.uid);
     await deleteNote(note.id);
   };
 
