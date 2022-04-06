@@ -1,7 +1,6 @@
 import "./ViewNote.css";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { VscPinned } from "react-icons/vsc";
-import { IoIosColorPalette } from "react-icons/io";
 import { BiArchiveIn } from "react-icons/bi";
 import { useNote } from "../../context/note-context";
 import { useAuth } from "../../context/auth-context";
