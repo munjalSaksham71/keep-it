@@ -29,7 +29,7 @@ const SignupScreen = () => {
   return (
     <div className="wrap">
       <form className="wrap form-height m-auto">
-        <div className="heading1 mt-3">SIGN IN</div>
+        <div className="heading1 mt-3">SIGN UP</div>
         {error && <div className="mb-2 mt-5 error-alert">{error}</div>}
         <label className="mt-5" htmlFor="email">
           Email Address:
@@ -66,9 +66,9 @@ const SignupScreen = () => {
         onClick={clickHandler}
         className="btn btn btn-primary m-auto mt-2"
       >
-        Sign In
+        Register Here
       </button>
-      <span className="wrap mt-2">
+      <span className="mt-2">
         Already a User?
         <Link to="/login" className="ml-1 bolder grey-text">
           Login here

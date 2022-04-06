@@ -22,6 +22,15 @@ const LoginScreen = () => {
     }
   };
 
+  const guestLoginHandler = async () => {
+    try {
+      await login('test@gmail.com','12345678');
+      navigate('/'); 
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
   return (
     <div className="wrap">
       <form className="wrap form-height m-auto">
@@ -51,7 +60,10 @@ const LoginScreen = () => {
       <button onClick={clickHandler} className="btn btn btn-primary m-auto mt-2">
         Sign In
       </button>
-      <span className="wrap mt-2">
+      <button onClick={guestLoginHandler} className="btn btn-outline-primary m-auto mt-2">
+        Login as a Guest.
+      </button>
+      <span className="mt-2">
         New User?
         <Link to="/signup" className="ml-1 bolder grey-text">
           Register here
