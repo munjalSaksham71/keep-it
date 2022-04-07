@@ -9,6 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ArchiveContextProvider } from "./context/archive-context";
 import { BinContextProvider } from "./context/bin-context";
 import { ModalContextProvider } from "./context/model-context";
+import { FilterContextProvider } from "./context/filter-context";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -17,7 +18,9 @@ ReactDOM.render(
         <ArchiveContextProvider>
           <BinContextProvider>
             <ModalContextProvider>
-              <App />
+              <FilterContextProvider>
+                <App />
+              </FilterContextProvider>
             </ModalContextProvider>
           </BinContextProvider>
         </ArchiveContextProvider>

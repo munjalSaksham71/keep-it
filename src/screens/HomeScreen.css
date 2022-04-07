@@ -9,3 +9,10 @@
     padding-top: 4rem;
     padding-left: 3rem;
 }
+
+.filter {
+    position: fixed;
+    z-index: 1;
+    right: 1rem;
+    top: 4rem;
+}
