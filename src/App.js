@@ -7,6 +7,7 @@ import SignupScreen from './screens/SignupScreen';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 import ArchiveScreen from './screens/ArchiveScreen';
 import TrashScreen from './screens/TrashScreen';
+import NotFound from './screens/NotFound';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/trash" element={ <PrivateRoute> <TrashScreen /> </PrivateRoute>} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/signup" element={<SignupScreen />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
